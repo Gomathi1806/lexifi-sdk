@@ -4,6 +4,7 @@ import { getAddress, keccak256, toBytes } from "viem";
 import {
   base,
   baseSepolia,
+  robinhood,
   getDeployment,
   NOT_DEPLOYED,
   ConfigFamily,
@@ -37,6 +38,7 @@ const RETIRED_ON_BASE = [
 for (const [name, deployment] of [
   ["base", base],
   ["baseSepolia", baseSepolia],
+  ["robinhood", robinhood],
 ]) {
   test(`${name}: every address is EIP-55 checksummed`, () => {
     for (const field of ADDRESS_FIELDS) {
@@ -66,6 +68,7 @@ test("base: chain metadata points at Base mainnet", () => {
 test("getDeployment routes by chain id", () => {
   assert.equal(getDeployment(8453), base);
   assert.equal(getDeployment(84532), baseSepolia);
+  assert.equal(getDeployment(4663), robinhood);
 });
 
 test("ConfigFamily keys are keccak256 of their documented strings", () => {
